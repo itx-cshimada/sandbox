@@ -15,10 +15,11 @@
 			left: 0;
 		}
 		.header__inner{
-			background: #000;
+			background: #555;
 			color: #fff;
 			box-sizing: border-box;
 			padding: 1rem;
+			border: solid 5px #000;
 		}
 		header ul{
 			display: flex;
@@ -325,12 +326,12 @@
 	resizeObserver.observe($header)
 	resizeObserver.observe(document.querySelector("main"))
 
-	$header.addEventListener('resize', ({detail: entries}) => {
+	$header.addEventListener('resize', ({detail: entry}) => {
 		prev_height = height
-		height = entries.contentRect.height;
+		height = entry.contentBoxSize[0].blockSize;
 		if(prev_height === height) return;
-		console.log("resize", entries.contentRect.height)
-		document.querySelector("html").style.scrollPaddingTop = `${entries.contentRect.height}px`;
+		console.log("resize", height)
+		document.querySelector("html").style.scrollPaddingTop = `${height}px`;
 	}, {passive: true})
 </script>
 </body>

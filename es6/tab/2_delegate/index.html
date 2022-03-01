@@ -5,7 +5,7 @@
 	<meta name="viewport"
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>1. オリジナル | Tab | ES6</title>
+	<title>2. 委譲 | Tab | ES6</title>
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
 	<style>
 		ul{
@@ -120,32 +120,36 @@
 			const tabBody = tabContents.querySelectorAll('.tab-body li');
 			console.log("3) tabBody", tabBody);
 
-			tabNav.forEach((nav, index) => {
-				console.log("4) tabNavのforEach" + index + "番目")
-				nav.addEventListener('click', (e) => {
-					console.log("5) ★★★ ここからクリック毎の処理 ★★★");
 
-					console.log("5-1) activeIndex", activeIndex);
-					console.log("5-2) index", index);
-					console.log("5-3) e(イベントオブジェクト)", e);
-					if (activeIndex === index) return;
+			tabContents.addEventListener('click', (e) => {
+				console.log("5) ★★★ ここからクリック毎の処理 ★★★");
 
-					tabBody[activeIndex].classList.remove('active');
-					console.log("5-4)tabBody[activeIndex]",tabBody[activeIndex]);
-					tabNav[activeIndex].classList.remove('active');
-					console.log("5-5)tabNav[activeIndex]",tabNav[activeIndex]);
+				console.log("5-1) activeIndex", activeIndex);
+				// console.log("5-2) index", index); // tabNav.forEach のループが無くなったので、エラーとなる
+				console.log("5-3) e(イベントオブジェクト)", e);
 
-					e.target.classList.add('active');
-					console.log("5-6-1) e.target", e.target);
-					console.log("5-6-2) tabNav[index]", tabNav[index]);
-					console.log("5-6-3) nav", nav);
-					console.log("5-6-4) 5-6-1 ～ 5-6-3 は取得方法は違うが、中身は全て同じもの / どれ使ってもよい");
+				var index = Array.prototype.indexOf.call(tabNav, e.target); // 5-2 の記述では取れなくなった index を別の方法で取得する
+				console.log("5-8) index", index);
 
-					tabBody[index].classList.add('active');
-					console.log("5-7) tabBody[index]",tabBody[index]);
+				if (activeIndex === index) return;
 
-					activeIndex = index;
-				});
+				tabBody[activeIndex].classList.remove('active');
+				console.log("5-4)tabBody[activeIndex]",tabBody[activeIndex]);
+				tabNav[activeIndex].classList.remove('active');
+				console.log("5-5)tabNav[activeIndex]",tabNav[activeIndex]);
+
+				e.target.classList.add('active');
+				console.log("5-6-1) e.target", e.target);
+				console.log("5-6-2) tabNav[index]", tabNav[index]);
+				// console.log("5-6-3) nav", nav); // tabNav.forEach のループが無くなったので、エラーとなる
+				console.log("5-6-4) 5-6-1 ～ 5-6-2 は取得方法は違うが、中身は全て同じもの / どれ使ってもよい");
+
+				console.log("5-9) e.currentTarget", e.currentTarget); // currentTarget でイベントを設定した要素（ここでは tabContents）を取得できる
+
+				tabBody[index].classList.add('active');
+				console.log("5-7) tabBody[index]",tabBody[index]);
+
+				activeIndex = index;
 			});
 		});
 	})();

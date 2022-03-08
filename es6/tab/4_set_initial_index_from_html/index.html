@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>1. オリジナル | Tab | ES6</title>
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+	<style>
+		ul{
+			padding: 0;
+			margin: 0;
+		}
+		.wrap {
+			max-width: 560px;
+			margin: 40px auto;
+		}
+		.tab-block {
+			font-family: 'Roboto', sans-serif;
+			margin-bottom: 60px;
+			box-shadow: 6px 6px 30px rgba(0, 0, 0, .2);
+		}
+		.tab-nav {
+			list-style: none;
+			display: flex;
+			justify-content: space-between;
+		}
+		.tab-nav li {
+			color: #fff;
+			background: #384455;
+			width: 100%;
+			text-align: center;
+			padding: 20px 10px;
+			cursor: pointer;
+			border-left: 1px solid #5c6673;
+			transition: background-color .3s;
+		}
+		.tab-nav li:hover {
+			 background-color: #414d5e;
+		 }
+		.tab-nav li:first-child {
+			 border-left: none;
+		 }
+		.tab-nav li.active {
+			 color: #374252;
+			 background: #f0f4f5;
+		 }
+
+		.tab-body {
+			background: #f0f4f5;
+			list-style: none;
+			padding: 50px 20px;
+			text-align: center;
+		}
+		.tab-body h3 {
+			font-size: 131%;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+		.tab-body li {
+			display: none;
+		}
+		.tab-body li.active {
+			 display: block;
+			 animation-duration: 1.5s;
+			 animation-name: fade-in;
+		 }
+
+		@keyframes fade-in {
+			0% {
+				display: none;
+				opacity: 0;
+			}
+			1% {
+				display: block;
+				opacity: 0;
+			}
+			100% {
+				display: block;
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+
+	<div class="tab-block">
+		<ul class="tab-nav">
+			<li class="active">Tab1</li>
+			<li>Tab2</li>
+			<li>Tab3</li>
+		</ul>
+		<ul class="tab-body">
+			<li class="active">
+				<h3>Tab Title 1</h3>
+				<p>Tab1 Contents</p>
+			</li>
+			<li>
+				<h3>Tab Title 2</h3>
+				<p>Tab2 Contents</p>
+			</li>
+			<li>
+				<h3>Tab Title 3</h3>
+				<p>Tab3 Contents</p>
+			</li>
+		</ul>
+	</div><!-- /.tab-block -->
+
+</div>
+<script>
+	(() => {
+		document.querySelectorAll('.tab-block').forEach((tabContents) => {
+			console.log("1) tabContents", tabContents);
+			let activeIndex = 0;
+
+			const tabNav = tabContents.querySelectorAll('.tab-nav li');
+			console.log("2) tabNav", tabNav);
+			const tabBody = tabContents.querySelectorAll('.tab-body li');
+			console.log("3) tabBody", tabBody);
+
+			tabNav.forEach((nav, index) => {
+				console.log("4) tabNavのforEach" + index + "番目")
+				nav.addEventListener('click', (e) => {
+					console.log("5) ★★★ ここからクリック毎の処理 ★★★");
+
+					console.log("5-1) activeIndex", activeIndex);
+					console.log("5-2) index", index);
+					console.log("5-3) e(イベントオブジェクト)", e);
+					if (activeIndex === index) return;
+
+					tabBody[activeIndex].classList.remove('active');
+					console.log("5-4)tabBody[activeIndex]",tabBody[activeIndex]);
+					tabNav[activeIndex].classList.remove('active');
+					console.log("5-5)tabNav[activeIndex]",tabNav[activeIndex]);
+
+					e.target.classList.add('active');
+					console.log("5-6-1) e.target", e.target);
+					console.log("5-6-2) tabNav[index]", tabNav[index]);
+					console.log("5-6-3) nav", nav);
+					console.log("5-6-4) 5-6-1 ～ 5-6-3 は取得方法は違うが、中身は全て同じもの / どれ使ってもよい");
+
+					tabBody[index].classList.add('active');
+					console.log("5-7) tabBody[index]",tabBody[index]);
+
+					activeIndex = index;
+				});
+			});
+		});
+	})();
+</script>
+</body>
+</html>

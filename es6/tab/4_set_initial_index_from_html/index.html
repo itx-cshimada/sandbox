@@ -5,7 +5,7 @@
 	<meta name="viewport"
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>1. オリジナル | Tab | ES6</title>
+	<title>4. ロード時に開いておくタブをHTMLから指定する | Tab | ES6</title>
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
 	<style>
 		ul{
@@ -88,12 +88,34 @@
 
 	<div class="tab-block">
 		<ul class="tab-nav">
-			<li class="active">Tab1</li>
-			<li>Tab2</li>
+			<li>Tab1</li>
+			<li class="active">Tab2</li>
 			<li>Tab3</li>
 		</ul>
 		<ul class="tab-body">
-			<li class="active">
+			<li>
+				<h3>Tab Title 1</h3>
+				<p>Tab1 Contents</p>
+			</li>
+			<li>
+				<h3>Tab Title 2</h3>
+				<p>Tab2 Contents</p>
+			</li>
+			<li>
+				<h3>Tab Title 3</h3>
+				<p>Tab3 Contents</p>
+			</li>
+		</ul>
+	</div><!-- /.tab-block -->
+
+	<div class="tab-block">
+		<ul class="tab-nav">
+			<li>Tab1</li>
+			<li>Tab2</li>
+			<li class="active">Tab3</li>
+		</ul>
+		<ul class="tab-body">
+			<li>
 				<h3>Tab Title 1</h3>
 				<p>Tab1 Contents</p>
 			</li>
@@ -122,6 +144,13 @@
 
 			tabNav.forEach((nav, index) => {
 				console.log("4) tabNavのforEach" + index + "番目")
+
+				if (nav.classList.contains("active")) {
+					activeIndex = index;
+					console.log("6) activeIndex", activeIndex);
+					tabBody[activeIndex].classList.add("active");
+				}
+
 				nav.addEventListener('click', (e) => {
 					console.log("5) ★★★ ここからクリック毎の処理 ★★★");
 

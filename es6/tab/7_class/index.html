@@ -5,7 +5,7 @@
 	<meta name="viewport"
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>6. prototype | Tab | ES6</title>
+	<title>7. class | Tab | ES6</title>
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/>
 	<link rel="stylesheet" href="../style.css"/>
 </head>
@@ -75,78 +75,80 @@
 </div>
 <script>
 	(() => {
-		function Tab(elem) {
-			this.tabContents = elem;
-			console.log("1) this.tabContents", this.tabContents);
-			this.tabNavWrapper = this.tabContents.querySelector('.tab-nav')
-			console.log("10) this.tabNavWrapper", this.tabNavWrapper);
-			this.tabNav = this.tabContents.querySelectorAll('.tab-nav li');
-			console.log("2) this.tabNav", this.tabNav);
-			this.tabBody = this.tabContents.querySelectorAll('.tab-body li');
-			console.log("3) this.tabBody", this.tabBody);
+		class Tab {
+			constructor(elem) {
+				this.tabContents = elem;
+				console.log("1) this.tabContents", this.tabContents);
+				this.tabNavWrapper = this.tabContents.querySelector('.tab-nav')
+				console.log("10) this.tabNavWrapper", this.tabNavWrapper);
+				this.tabNav = this.tabContents.querySelectorAll('.tab-nav li');
+				console.log("2) this.tabNav", this.tabNav);
+				this.tabBody = this.tabContents.querySelectorAll('.tab-body li');
+				console.log("3) this.tabBody", this.tabBody);
 
-			this.prev = this.tabContents.querySelector('.tab-button-prev');
-			console.log("6) this.tabButtonPrev", this.prev);
-			this.next = this.tabContents.querySelector('.tab-button-next');
-			console.log("8) this.tabButtonNext", this.next);
+				this.prev = this.tabContents.querySelector('.tab-button-prev');
+				console.log("6) this.tabButtonPrev", this.prev);
+				this.next = this.tabContents.querySelector('.tab-button-next');
+				console.log("8) this.tabButtonNext", this.next);
 
-			this.classNameActive = "active";
-			this.activeIndex = 0;
-			this.init();
-		}
+				this.classNameActive = "active";
+				this.activeIndex = 0;
+				this.init();
+			}
 
-		Tab.prototype.init = function () {
-			this.checkIndex();
-			this.bindEvents();
-		}
-		Tab.prototype.checkIndex = function () {
-			this.tabNav.forEach((nav, index) => {
-				console.log("4) this.tabNavのforEach" + index + "番目")
-				if (!nav.classList.contains(this.classNameActive)) return;
+			init = function () {
+				this.checkIndex();
+				this.bindEvents();
+			}
+			checkIndex = function () {
+				this.tabNav.forEach((nav, index) => {
+					console.log("4) this.tabNavのforEach" + index + "番目")
+					if (!nav.classList.contains(this.classNameActive)) return;
+					this.changeTab(index);
+				});
+			}
+			bindEvents = function () {
+				this.tabNavWrapper.addEventListener('click', this.onClickTabNav.bind(this));
+				this.prev.addEventListener('click', this.onClickPrev.bind(this));
+				this.next.addEventListener('click', this.onClickNext.bind(this));
+			}
+			onClickTabNav = function (e) {
+				console.log("5) ★★★ ここからクリック毎の処理 ★★★");
+				console.log("5-1) this.activeIndex", this.activeIndex);
+				console.log("5-3) e(イベントオブジェクト)", e);
+				const index = Array.prototype.indexOf.call(this.tabNav, e.target); // 5-2 の記述では取れなくなった index を別の方法で取得する
+				console.log("5-8) index", index);
+				if (this.activeIndex === index) return;
 				this.changeTab(index);
-			});
-		}
-		Tab.prototype.bindEvents = function () {
-			this.tabNavWrapper.addEventListener('click', this.onClickTabNav.bind(this));
-			this.prev.addEventListener('click', this.onClickPrev.bind(this));
-			this.next.addEventListener('click', this.onClickNext.bind(this));
-		}
-		Tab.prototype.onClickTabNav = function (e) {
-			console.log("5) ★★★ ここからクリック毎の処理 ★★★");
-			console.log("5-1) this.activeIndex", this.activeIndex);
-			console.log("5-3) e(イベントオブジェクト)", e);
-			const index = Array.prototype.indexOf.call(this.tabNav, e.target); // 5-2 の記述では取れなくなった index を別の方法で取得する
-			console.log("5-8) index", index);
-			if (this.activeIndex === index) return;
-			this.changeTab(index);
-		}
-		Tab.prototype.onClickPrev = function (e) {
-			const prev = (this.activeIndex === 0) ? this.tabNav.length - 1 : this.activeIndex - 1;
-			console.log("7) prev", prev);
-			this.changeTab(prev);
-		}
-		Tab.prototype.onClickNext = function (e) {
-			const next = (this.activeIndex === this.tabNav.length - 1) ? 0 : this.activeIndex + 1;
-			console.log("9) next", next);
-			this.changeTab(next);
-		}
-		Tab.prototype.changeTab = function (index) {
-			console.log("5-8) ★★★ ここからタブ変更毎の処理 ★★★");
-			this.changeTabNav(index);
-			this.changeTabBody(index);
-			this.activeIndex = index;
-		}
-		Tab.prototype.changeTabNav = function (index) {
-			this.tabNav[this.activeIndex].classList.remove(this.classNameActive);
-			console.log("5-5) this.tabNav[activeIndex]", this.tabNav[this.activeIndex]);
-			this.tabNav[index].classList.add(this.classNameActive);
-			console.log("5-6-2) this.tabNav[index]", this.tabNav[index]);
-		}
-		Tab.prototype.changeTabBody = function (index) {
-			this.tabBody[this.activeIndex].classList.remove(this.classNameActive);
-			console.log("5-4) this.tabBody[activeIndex]", this.tabBody[this.activeIndex]);
-			this.tabBody[index].classList.add(this.classNameActive);
-			console.log("5-7) this.tabBody[index]", this.tabBody[index]);
+			}
+			onClickPrev = function (e) {
+				const prev = (this.activeIndex === 0) ? this.tabNav.length - 1 : this.activeIndex - 1;
+				console.log("7) prev", prev);
+				this.changeTab(prev);
+			}
+			onClickNext = function (e) {
+				const next = (this.activeIndex === this.tabNav.length - 1) ? 0 : this.activeIndex + 1;
+				console.log("9) next", next);
+				this.changeTab(next);
+			}
+			changeTab = function (index) {
+				console.log("5-8) ★★★ ここからタブ変更毎の処理 ★★★");
+				this.changeTabNav(index);
+				this.changeTabBody(index);
+				this.activeIndex = index;
+			}
+			changeTabNav = function (index) {
+				this.tabNav[this.activeIndex].classList.remove(this.classNameActive);
+				console.log("5-5) this.tabNav[activeIndex]", this.tabNav[this.activeIndex]);
+				this.tabNav[index].classList.add(this.classNameActive);
+				console.log("5-6-2) this.tabNav[index]", this.tabNav[index]);
+			}
+			changeTabBody = function (index) {
+				this.tabBody[this.activeIndex].classList.remove(this.classNameActive);
+				console.log("5-4) this.tabBody[activeIndex]", this.tabBody[this.activeIndex]);
+				this.tabBody[index].classList.add(this.classNameActive);
+				console.log("5-7) this.tabBody[index]", this.tabBody[index]);
+			}
 		}
 
 		let tab_array = [];

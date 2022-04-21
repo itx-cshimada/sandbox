@@ -5,7 +5,7 @@
 	<meta name="viewport"
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>1. オリジナル | Tab | ES6</title>
+	<title>5. 2～4のマージ | Tab | ES6</title>
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
 	<link rel="stylesheet" href="../style.css"/>
 </head>
@@ -14,12 +14,12 @@
 
 	<div class="tab-block">
 		<ul class="tab-nav">
-			<li class="active">Tab1</li>
-			<li>Tab2</li>
+			<li>Tab1</li>
+			<li class="active">Tab2</li>
 			<li>Tab3</li>
 		</ul>
 		<ul class="tab-body">
-			<li class="active">
+			<li>
 				<h3>Tab Title 1</h3>
 				<p>Tab1 Contents</p>
 			</li>
@@ -32,6 +32,44 @@
 				<p>Tab3 Contents</p>
 			</li>
 		</ul>
+		<ul class="tab-button">
+			<li>
+				<button class="tab-button-prev">prev</button>
+			</li>
+			<li>
+				<button class="tab-button-next">next</button>
+			</li>
+		</ul>
+	</div><!-- /.tab-block -->
+
+	<div class="tab-block">
+		<ul class="tab-nav">
+			<li>Tab1</li>
+			<li>Tab2</li>
+			<li class="active">Tab3</li>
+		</ul>
+		<ul class="tab-body">
+			<li>
+				<h3>Tab Title 1</h3>
+				<p>Tab1 Contents</p>
+			</li>
+			<li>
+				<h3>Tab Title 2</h3>
+				<p>Tab2 Contents</p>
+			</li>
+			<li>
+				<h3>Tab Title 3</h3>
+				<p>Tab3 Contents</p>
+			</li>
+		</ul>
+		<ul class="tab-button">
+			<li>
+				<button class="tab-button-prev">prev</button>
+			</li>
+			<li>
+				<button class="tab-button-next">next</button>
+			</li>
+		</ul>
 	</div><!-- /.tab-block -->
 
 </div>
@@ -41,37 +79,73 @@
 			console.log("1) tabContents", tabContents);
 			let activeIndex = 0;
 
+			const tabNavWrapper = tabContents.querySelector(".tab-nav")
+			console.log("10) tabNavWrapper", tabNavWrapper);
 			const tabNav = tabContents.querySelectorAll('.tab-nav li');
 			console.log("2) tabNav", tabNav);
 			const tabBody = tabContents.querySelectorAll('.tab-body li');
 			console.log("3) tabBody", tabBody);
 
+			// タブの現在位置を変更する処理を外出し
+			var changeTab = (index) => {
+				console.log("5-8) ★★★ ここからタブ変更毎の処理 ★★★");
+				tabBody[activeIndex].classList.remove('active');
+				console.log("5-4)tabBody[activeIndex]", tabBody[activeIndex]);
+				tabNav[activeIndex].classList.remove('active');
+				console.log("5-5)tabNav[activeIndex]", tabNav[activeIndex]);
+
+				//e.target.classList.add('active');
+				tabNav[index].classList.add("active");
+				//console.log("5-6-1) e.target", e.target); // nav.addEventListener のスコープ外なので、エラーとなる
+				console.log("5-6-2) tabNav[index]", tabNav[index]);
+				// console.log("5-6-3) nav", nav); // tabNav.forEach のスコープ外なので、エラーとなる
+				console.log("5-6-4) 有効な記述は 5-6-2 のみ");
+
+				tabBody[index].classList.add('active');
+				console.log("5-7) tabBody[index]", tabBody[index]);
+
+				activeIndex = index;
+			}
+
 			tabNav.forEach((nav, index) => {
 				console.log("4) tabNavのforEach" + index + "番目")
-				nav.addEventListener('click', (e) => {
-					console.log("5) ★★★ ここからクリック毎の処理 ★★★");
 
-					console.log("5-1) activeIndex", activeIndex);
-					console.log("5-2) index", index);
-					console.log("5-3) e(イベントオブジェクト)", e);
-					if (activeIndex === index) return;
-
-					tabBody[activeIndex].classList.remove('active');
-					console.log("5-4)tabBody[activeIndex]",tabBody[activeIndex]);
-					tabNav[activeIndex].classList.remove('active');
-					console.log("5-5)tabNav[activeIndex]",tabNav[activeIndex]);
-
-					e.target.classList.add('active');
-					console.log("5-6-1) e.target", e.target);
-					console.log("5-6-2) tabNav[index]", tabNav[index]);
-					console.log("5-6-3) nav", nav);
-					console.log("5-6-4) 5-6-1 ～ 5-6-3 は取得方法は違うが、中身は全て同じもの / どれ使ってもよい");
-
-					tabBody[index].classList.add('active');
-					console.log("5-7) tabBody[index]",tabBody[index]);
-
+				if (nav.classList.contains("active")) {
 					activeIndex = index;
-				});
+					console.log("6) activeIndex", activeIndex);
+					tabBody[activeIndex].classList.add("active");
+				}
+			});
+
+			tabNavWrapper.addEventListener('click', (e) => {
+				console.log("5) ★★★ ここからクリック毎の処理 ★★★");
+
+				console.log("5-1) activeIndex", activeIndex);
+				// console.log("5-2) index", index); // tabNav.forEach のループが無くなったので、エラーとなる
+				console.log("5-3) e(イベントオブジェクト)", e);
+
+				const index = Array.prototype.indexOf.call(tabNav, e.target); // 5-2 の記述では取れなくなった index を別の方法で取得する
+				console.log("5-8) index", index);
+
+				if (activeIndex === index) return;
+
+				changeTab(index);
+			});
+
+			const tabButtonPrev = tabContents.querySelector('.tab-button-prev');
+			console.log("6) tabButtonPrev", tabButtonPrev);
+			tabButtonPrev.addEventListener("click", () => {
+				const prev = (activeIndex === 0) ? tabNav.length - 1 : activeIndex - 1;
+				console.log("7) prev", prev);
+				changeTab(prev);
+			});
+
+			const tabButtonNext = tabContents.querySelector('.tab-button-next');
+			console.log("8) tabButtonNext", tabButtonNext);
+			tabButtonNext.addEventListener("click", () => {
+				const next = (activeIndex === tabNav.length - 1) ? 0 : activeIndex + 1;
+				console.log("9) next", next);
+				changeTab(next);
 			});
 		});
 	})();

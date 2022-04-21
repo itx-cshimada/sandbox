@@ -128,7 +128,7 @@
 				// console.log("5-2) index", index); // tabNav.forEach のループが無くなったので、エラーとなる
 				console.log("5-3) e(イベントオブジェクト)", e);
 
-				var index = Array.prototype.indexOf.call(tabNav, e.target); // 5-2 の記述では取れなくなった index を別の方法で取得する
+				const index = Array.prototype.indexOf.call(tabNav, e.target); // 5-2 の記述では取れなくなった index を別の方法で取得する
 				console.log("5-8) index", index);
 
 				if (activeIndex === index) return;

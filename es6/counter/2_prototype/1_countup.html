@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>1. CountUp | Prototype | ES6</title>
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/>
+	<link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+<div class="wrap">
+	<div id="counter1">
+		<div class="counter_number"></div>
+		<button class="counter_increment">+</button>
+	</div>
+
+	<div id="counter2">
+		<div class="counter_number"></div>
+		<button class="counter_increment">+</button>
+	</div>
+</div>
+<script>
+	function CountUp(elem) {
+		console.log("2) コンストラクタ");
+		console.log("3-1) elem", elem);
+		this.elem = elem;
+		this.count = 0;
+		this.number = elem.querySelector(".counter_number");
+		this.incrementButton = elem.querySelector(".counter_increment");
+
+		this.bindEvent();
+		this.update();
+
+		// constructor はデフォルトで this (インスタンス)を返す
+		// return this;
+
+		// 明示的に別のオブジェクトを return すると 1-1 や 1-2 に格納されるものが変化する
+		// return { foo: "bar"};
+
+		// オブジェクト以外のものを return すると無視される
+		// return "dummyText";
+	}
+
+	CountUp.prototype.bindEvent = function () {
+		this.incrementButton.addEventListener("click", this.increment.bind(this));
+	};
+
+	CountUp.prototype.increment = function () {
+		this.count++;
+		this.update();
+	};
+
+	CountUp.prototype.update = function () {
+		this.number.innerText = this.count;
+	};
+
+	// CountUp をインスタンス化
+	const counter1 = new CountUp(document.querySelector("#counter1"));
+	const counter2 = new CountUp(document.querySelector("#counter2"));
+	console.log("1-1) counter1", counter1);
+	console.log("1-2) counter2", counter2);
+	console.log("1-3) counter1 === counter2", counter1 === counter2);
+	console.log("1-4) counter1 instanceof CountUp", counter1 instanceof CountUp);
+	console.log("1-5) counter2 instanceof CountUp", counter2 instanceof CountUp);
+	console.log("3-2) counter1.elem", counter1.elem);
+</script>
+</body>
+</html>

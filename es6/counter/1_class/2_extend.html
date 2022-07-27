@@ -11,15 +11,26 @@
 </head>
 <body>
 <div class="wrap">
-	<div id="counter1">
+	<div class="counter" id="counter1">
 		<div class="counter_number"></div>
-		<button class="counter_increment">+</button>
+		<div class="counter_control">
+			<button class="counter_increment">+</button>
+		</div>
 	</div>
 
-	<div id="counter2">
+	<div class="counter" id="counter2">
 		<div class="counter_number"></div>
-		<button class="counter_decrement">-</button>
-		<button class="counter_increment">+</button>
+		<div class="counter_control">
+			<button class="counter_decrement">-</button>
+			<button class="counter_increment">+</button>
+		</div>
+	</div>
+
+	<div class="counter" id="counter3">
+		<div class="counter_number"></div>
+		<div class="counter_control">
+			<button class="counter_increment">+</button>
+		</div>
 	</div>
 </div>
 <script>
@@ -34,15 +45,6 @@
 
 			this.bindEvent();
 			this.update();
-
-			// constructor はデフォルトで this (インスタンス)を返す
-			// return this;
-
-			// 明示的に別のオブジェクトを return すると 1-1 や 1-2 に格納されるものが変化する
-			// return { foo: "bar"};
-
-			// オブジェクト以外のものを return すると無視される
-			// return "dummyText";
 		}
 
 		bindEvent() {
@@ -78,17 +80,29 @@
 		}
 	}
 
+	class CountUpDouble extends CountUp {
+		constructor(elem, start) {
+			super(elem);
+			this.count = start;
+			this.update();
+		}
+
+		increment() {
+			this.count = this.count * 2;
+			this.update();
+		}
+	}
+
 	// CountUp をインスタンス化
 	const counter1 = new CountUp(document.querySelector("#counter1"));
-	const counter2 = new CountUpAndDown(document.querySelector("#counter2"));
 	console.log("1-1) counter1", counter1);
+	const counter2 = new CountUpAndDown(document.querySelector("#counter2"));
 	console.log("1-2) counter2", counter2);
 	console.log("1-3) counter1 === counter2", counter1 === counter2);
 	console.log("1-4) counter1 instanceof CountUp", counter1 instanceof CountUp);
 	console.log("1-5) counter2 instanceof CountUp", counter2 instanceof CountUp);
 	console.log("1-6) counter2 instanceof CountUpAndDown", counter2 instanceof CountUpAndDown);
-	console.log("3-2) counter1.elem", counter1.elem);
-	console.log("4-3) counter2.elem", counter2.elem);
+	const counter3 = new CountUpDouble(document.querySelector("#counter3"), 1);
 </script>
 </body>
 </html>

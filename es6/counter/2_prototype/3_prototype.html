@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>2. Extend | Class | ES6</title>
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/>
+	<link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+<div class="wrap">
+	<div class="counter" id="counter1">
+		<div class="counter_number"></div>
+		<div class="counter_control">
+			<button class="counter_increment">+</button>
+		</div>
+	</div>
+
+	<div class="counter" id="counter2">
+		<div class="counter_number"></div>
+		<div class="counter_control">
+			<button class="counter_decrement">-</button>
+			<button class="counter_increment">+</button>
+		</div>
+	</div>
+</div>
+<script>
+	function CountUp(elem) {
+		// 関数がコンストラクタに相当
+		this.elem = elem;
+		this.count = 0;
+		this.number = elem.querySelector(".counter_number");
+		this.incrementButton = elem.querySelector(".counter_increment");
+
+		this.bindEvent();
+		this.update();
+	}
+
+	CountUp.prototype.bindEvent = function () {
+		this.incrementButton.addEventListener("click", this.increment.bind(this));
+	};
+
+	CountUp.prototype.increment = function () {
+		this.count++;
+		this.update();
+	};
+
+	CountUp.prototype.update = function () {
+		this.number.innerText = this.count;
+	};
+
+	function CountUpAndDown(elem) {
+		// CountUp クラスのコンストラクタを実行
+		CountUp.call(this, elem);
+		this.decrementButton = elem.querySelector(".counter_decrement");
+		this.bindDownEvent();
+	}
+
+	// CountUpAndDown クラスのプロトタイプとして CountUp クラスを代入
+	CountUpAndDown.prototype = Object.create(CountUp.prototype);
+
+	CountUpAndDown.prototype.bindDownEvent = function () {
+		this.decrementButton.addEventListener("click", this.decrement.bind(this));
+	};
+
+	CountUpAndDown.prototype.decrement = function () {
+		this.count--;
+		this.update();
+	};
+
+
+	console.log("1-1) CountUp.prototype", CountUp.prototype);
+	console.log("1-2) CountUp.prototype.constructor === CountUp", CountUp.prototype.constructor === CountUp);
+	// CountUp をインスタンス化
+	const counter1 = new CountUp(document.querySelector("#counter1"));
+	console.log("2-1) counter1", counter1);
+	console.log("2-2) Object.getPrototypeOf(counter1)", Object.getPrototypeOf(counter1));
+	console.log("2-3) counter1.__prototype__", counter1.__prototype__);
+
+	// 存在しない foo プロパティにアクセス
+	console.log("3-1) counter1.foo", counter1.foo);
+	// クラスのプロトタイプに foo プロパティを追加
+	CountUp.prototype.foo = 'prototype foo';
+	console.log("3-2) counter1.foo", counter1.foo);
+	// インスタンスに foo プロパティを追加
+	counter1.foo = 'instance foo';
+	console.log("3-3) counter1.foo", counter1.foo);
+
+
+	console.log("4-1) CountUp.prototype", CountUp.prototype);
+	const counter2 = new CountUpAndDown(document.querySelector("#counter2"));
+	console.log("5-1) Object.getPrototypeOf(counter2)", Object.getPrototypeOf(counter2));
+	console.log("5-2) Object.getPrototypeOf(CountUp2.prototype)", Object.getPrototypeOf(CountUpAndDown.prototype));
+</script>
+</body>
+</html>

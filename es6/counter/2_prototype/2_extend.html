@@ -34,64 +34,67 @@
 	</div>
 </div>
 <script>
-	class CountUp {
-		constructor(elem) {
-			console.log("2) コンストラクタ");
-			console.log("3-1) elem", elem);
-			this.elem = elem;
-			this.count = 0;
-			this.number = elem.querySelector(".counter_number");
-			this.incrementButton = elem.querySelector(".counter_increment");
+	function CountUp(elem) {
+		// 関数がコンストラクタに相当
+		console.log("2) コンストラクタ");
+		console.log("3-1) elem", elem);
+		this.elem = elem;
+		this.count = 0;
+		this.number = elem.querySelector(".counter_number");
+		this.incrementButton = elem.querySelector(".counter_increment");
 
-			this.bindEvent();
-			this.update();
-		}
-
-		bindEvent() {
-			this.incrementButton.addEventListener("click", this.increment.bind(this));
-		}
-
-		increment() {
-			this.count++;
-			this.update();
-		}
-
-		update() {
-			this.number.innerText = this.count;
-		}
+		this.bindEvent();
+		this.update();
 	}
 
-	class CountUpAndDown extends CountUp {
-		constructor(elem) {
-			super(elem);
-			console.log("4-1) 子クラスのコンストラクタ");
-			console.log("4-2) elem", elem);
-			this.decrementButton = elem.querySelector(".counter_decrement");
-			this.bindDownEvent();
-		}
+	CountUp.prototype.bindEvent = function () {
+		this.incrementButton.addEventListener("click", this.increment.bind(this));
+	};
 
-		bindDownEvent() {
-			this.decrementButton.addEventListener("click", this.decrement.bind(this));
-		}
+	CountUp.prototype.increment = function () {
+		this.count++;
+		this.update();
+	};
 
-		decrement() {
-			this.count--;
-			this.update();
-		}
+	CountUp.prototype.update = function () {
+		this.number.innerText = this.count;
+	};
+
+	function CountUpAndDown(elem) {
+		console.log("4-1) 子クラスのコンストラクタ");
+		console.log("4-2) elem", elem);
+		// CountUp クラスのコンストラクタを実行
+		CountUp.call(this, elem);
+		this.decrementButton = elem.querySelector(".counter_decrement");
+		this.bindDownEvent();
 	}
 
-	class CountUpDouble extends CountUp {
-		constructor(elem, start) {
-			super(elem);
-			this.count = start;
-			this.update();
-		}
+	// CountUpAndDown クラスのプロトタイプとして CountUp クラスを代入
+	CountUpAndDown.prototype = Object.create(CountUp.prototype);
 
-		increment() {
-			this.count = this.count * 2;
-			this.update();
-		}
+	CountUpAndDown.prototype.bindDownEvent = function () {
+		this.decrementButton.addEventListener("click", this.decrement.bind(this));
+	};
+
+	CountUpAndDown.prototype.decrement = function () {
+		this.count--;
+		this.update();
+	};
+
+	function CountUpDouble(elem, start) {
+		// CountUp クラスのコンストラクタを実行
+		CountUp.call(this, elem);
+		this.count = start;
+		this.update();
 	}
+
+	// CountUpDouble クラスのプロトタイプとして CountUp クラスを代入
+	CountUpDouble.prototype = Object.create(CountUp.prototype);
+
+	CountUpDouble.prototype.increment = function () {
+		this.count = this.count * 2;
+		this.update();
+	};
 
 	// CountUp をインスタンス化
 	const counter1 = new CountUp(document.querySelector("#counter1"));

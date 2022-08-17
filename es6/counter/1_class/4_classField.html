@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>5. ClassField | Class | counter | ES6</title>
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/>
+	<link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+<div class="wrap">
+	<div class="counter" id="counter1">
+		<div class="counter_number"></div>
+		<div class="counter_control">
+			<button class="counter_increment">+</button>
+		</div>
+	</div>
+
+	<div class="counter" id="counter3">
+		<div class="counter_number"></div>
+		<div class="counter_control">
+			<button class="counter_increment">+</button>
+		</div>
+	</div>
+</div>
+<script>
+	class CountUp {
+		count = 0;
+		current = function (){
+			console.log("2) current", this.count);
+			return this.count;
+		}
+
+		constructor(elem) {
+			this.elem = elem;
+			this.number = elem.querySelector(".counter_number");
+			this.incrementButton = elem.querySelector(".counter_increment");
+
+			this.bindEvent();
+			this.update();
+		}
+
+		bindEvent() {
+			this.incrementButton.addEventListener("click", this.increment.bind(this));
+		}
+
+		increment() {
+			this.count++;
+			this.update();
+		}
+
+		update() {
+			this.number.innerText = this.count;
+		}
+	}
+
+	class CountUpDouble extends CountUp {
+		current = function () {
+			console.log("4) child current", this.count);
+			return this.count;
+		}
+		constructor(elem, start) {
+			super(elem);
+			this.count = start;
+			this.update();
+		}
+
+		increment() {
+			this.count = this.count * 2;
+			this.update();
+		}
+	}
+
+	// CountUp をインスタンス化
+	const counter1 = new CountUp(document.querySelector("#counter1"));
+	counter1.increment();
+	console.log("1-1) counter1", counter1);
+	console.log("1-2) counter1.current()", counter1.current());
+
+	const counter3 = new CountUpDouble(document.querySelector("#counter3"), 1);
+	console.log("3-1) counter3", counter3);
+	console.log("3-2) counter3.current()", counter3.current());
+
+
+</script>
+</body>
+</html>

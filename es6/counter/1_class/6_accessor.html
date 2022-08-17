@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>4. Accessor | Class | counter | ES6</title>
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/>
+	<link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+<div class="wrap">
+	<div class="counter" id="counter1">
+		<div class="counter_number"></div>
+		<div class="counter_control">
+			<button class="counter_increment">+</button>
+		</div>
+	</div>
+</div>
+<script>
+	class CountUp {
+		#count;
+		constructor(elem) {
+			this.elem = elem;
+			// #count に変更
+			// アクセサプロパティ（count）と名前が被らないようにする必要がある
+			// 名前が被ると無限ループが発生する
+			this.#count = 0;
+			this.number = elem.querySelector(".counter_number");
+			this.incrementButton = elem.querySelector(".counter_increment");
+
+			this.bindEvent();
+			this.update();
+		}
+
+		// getter
+		get count() {
+			console.log("getter");
+			return `今のカウントは${this.#count}です`;
+		}
+
+		// setter
+		set count(val) {
+			console.log("setter", val);
+			this.#count = val;
+			this.update();
+		}
+
+		bindEvent() {
+			this.incrementButton.addEventListener("click", this.increment.bind(this));
+		}
+
+		increment() {
+			this.count = ++this.#count;
+		}
+
+		update() {
+			this.number.innerText = this.#count;
+		}
+	}
+
+	// CountUp をインスタンス化
+	const counter1 = new CountUp(document.querySelector("#counter1"));
+	console.log("1-1) counter1", counter1);
+	console.log('1-1) counter1.count', counter1.count);
+	console.log('1-2) counter1.count = 10', counter1.count = 10);
+</script>
+</body>
+</html>

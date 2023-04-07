@@ -1,0 +1,98 @@
+@import url("https://unpkg.com/ress/dist/ress.min.css") layer(reset);
+
+.wrap{
+	width: 50VW;
+	margin: 0 auto 100px;
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+}
+
+ul{
+	list-style: none;
+}
+
+.c-list {
+	margin-top: 20px;
+}
+
+.c-list li {
+	line-height: 1.5;
+	color: #222;
+	position: relative;
+	padding-left: 0.875em;
+}
+
+.c-list li:not(:first-child) {
+	margin-top: 12px;
+}
+
+.c-list li::before {
+	content: "";
+	display: inline-block;
+	width: 0.375em;
+	height: 0.375em;
+	position: absolute;
+	top: calc(0.4em);
+	left: 0;
+	margin: 0;
+	background: black;
+	background-size: contain;
+}
+
+.c-list > li ul {
+	margin-top: 12px;
+}
+
+.c-list .c-list {
+	margin-top: 20px;
+}
+
+.c-table {
+	border-collapse: collapse;
+	margin-top: 20px;
+	border-top: 1px solid #b3b3b3;
+	border-left: 1px solid #b3b3b3;
+	width: 100%;
+}
+.c-table th,
+.c-table td {
+	border-right: 1px solid #b3b3b3;
+	border-bottom: 1px solid #b3b3b3;
+}
+
+.c-table caption {
+	margin-bottom: 12px;
+	text-align: left;
+}
+
+.c-table thead tr th,
+.c-table thead tr td {
+	padding: 16px;
+	text-align: center;
+	font-weight: 500;
+	color: #000;
+	background-color: #e0e0e0;
+}
+
+.c-table tbody tr th,
+.c-table tbody tr td {
+	text-align: left;
+	padding: 16px;
+}
+
+.c-table tbody tr th {
+	font-weight: 500;
+	color: #000;
+	background-color: #f3f3f3;
+}
+
+.c-table tbody tr td {
+	color: #222;
+}
+
+.c-table tbody tr td > *:first-child {
+	margin-top: 0;
+}

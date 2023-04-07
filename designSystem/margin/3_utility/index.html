@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>都度調整 | 要素間の空き検討 | Design System</title>
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<style>
+	.u-pt-00 {
+		padding-top: 0 !important;
+	}
+
+	.u-pb-00 {
+		padding-bottom: 0 !important;
+	}
+
+	.u-mt-01 {
+		margin-top: 4px !important;
+	}
+
+	.u-mb-01 {
+		margin-bottom: 4px !important;
+	}
+
+	.u-pt-01 {
+		padding-top: 4px !important;
+	}
+
+	.u-pb-01 {
+		padding-bottom: 4px !important;
+	}
+
+	.u-mt-02 {
+		margin-top: 8px !important;
+	}
+
+	.u-mb-02 {
+		margin-bottom: 8px !important;
+	}
+
+	.u-pt-02 {
+		padding-top: 8px !important;
+	}
+
+	.u-pb-02 {
+		padding-bottom: 8px !important;
+	}
+
+	.u-mt-03 {
+		margin-top: 12px !important;
+	}
+
+	.u-mb-03 {
+		margin-bottom: 12px !important;
+	}
+
+	.u-pt-03 {
+		padding-top: 12px !important;
+	}
+
+	.u-pb-03 {
+		padding-bottom: 12px !important;
+	}
+
+	.u-mt-04 {
+		margin-top: 16px !important;
+	}
+
+	.u-mb-04 {
+		margin-bottom: 16px !important;
+	}
+
+	.u-pt-04 {
+		padding-top: 16px !important;
+	}
+
+	.u-pb-04 {
+		padding-bottom: 16px !important;
+	}
+
+	.u-mt-05 {
+		margin-top: 20px !important;
+	}
+
+	.u-mb-05 {
+		margin-bottom: 20px !important;
+	}
+
+	.u-pt-05 {
+		padding-top: 20px !important;
+	}
+
+	.u-pb-05 {
+		padding-bottom: 20px !important;
+	}
+
+	.u-mt-06 {
+		margin-top: 24px !important;
+	}
+
+	.u-mb-06 {
+		margin-bottom: 24px !important;
+	}
+
+	.u-pt-06 {
+		padding-top: 24px !important;
+	}
+
+	.u-pb-06 {
+		padding-bottom: 24px !important;
+	}
+
+	.u-mt-07 {
+		margin-top: 28px !important;
+	}
+
+	.u-mb-07 {
+		margin-bottom: 28px !important;
+	}
+
+	.u-pt-07 {
+		padding-top: 28px !important;
+	}
+
+	.u-pb-07 {
+		padding-bottom: 28px !important;
+	}
+
+	.u-mt-08 {
+		margin-top: 32px !important;
+	}
+
+	.u-mb-08 {
+		margin-bottom: 32px !important;
+	}
+
+	.u-pt-08 {
+		padding-top: 32px !important;
+	}
+
+	.u-pb-08 {
+		padding-bottom: 32px !important;
+	}
+
+	.u-mt-09 {
+		margin-top: 44px !important;
+	}
+
+	.u-mb-09 {
+		margin-bottom: 44px !important;
+	}
+
+	.u-pt-09 {
+		padding-top: 44px !important;
+	}
+
+	.u-pb-09 {
+		padding-bottom: 44px !important;
+	}
+
+	.u-mt-10 {
+		margin-top: 60px !important;
+	}
+
+	.u-mb-10 {
+		margin-bottom: 60px !important;
+	}
+
+	.u-pt-10 {
+		padding-top: 60px !important;
+	}
+
+	.u-pb-10 {
+		padding-bottom: 60px !important;
+	}
+
+	.u-mt-11 {
+		margin-top: 84px !important;
+	}
+
+	.u-mb-11 {
+		margin-bottom: 84px !important;
+	}
+
+	.u-pt-11 {
+		padding-top: 84px !important;
+	}
+
+	.u-pb-11 {
+		padding-bottom: 84px !important;
+	}
+
+	.u-mt-12 {
+		margin-top: 100px !important;
+	}
+
+	.u-mb-12 {
+		margin-bottom: 100px !important;
+	}
+
+</style>
+<div class="wrap">
+
+	<h1 class="c-heading-a u-mt-12">h1 吾輩は猫である。名前はまだ無い。</h1>
+
+	<h2 class="c-heading-b u-mt-06">h2 吾輩は猫である。名前はまだ無い。</h2>
+
+	<h3 class="c-heading-c u-mt-06">h3 吾輩は猫である。名前はまだ無い。</h3>
+
+	<h4 class="c-heading-d u-mt-06">h4 吾輩は猫である。名前はまだ無い。</h4>
+
+	<p class="c-text u-mt-06">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+	<ul class="c-list u-mt-06">
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。
+			<ul>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+			</ul>
+		</li>
+	</ul><!-- /.c-list -->
+
+	<div class="c-media c-media__col1 u-mt-06">
+		<div class="c-media__item">
+			<figure class="c-figure">
+				<img src="https://placekitten.com/800/450" width="800" height="450" alt="画像の内容についての説明">
+				<figcaption>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</figcaption>
+			</figure><!-- /.c-figure -->
+		</div>
+	</div><!-- /.c-media -->
+
+	<h2 class="c-heading-b u-mt-10">h2 吾輩は猫である。名前はまだ無い。</h2>
+
+	<h3 class="c-heading-c u-mt-06">h3 吾輩は猫である。名前はまだ無い。</h3>
+
+	<p class="c-text u-mt-06">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+	<ul class="c-list u-mt-06">
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。
+			<ul>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+			</ul>
+		</li>
+	</ul><!-- /.c-list -->
+
+	<table class="c-table u-mt-06">
+		<colgroup>
+			<col class="c-table__cell-40">
+			<col class="c-table__cell-30">
+			<col class="c-table__cell-30">
+		</colgroup>
+		<thead>
+		<tr>
+			<th scope="col">吾輩は猫である。名前はまだ無い。</th>
+			<th scope="col">データ</th>
+			<th scope="col">データ</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th scope="row">吾輩は猫である。名前はまだ無い。</th>
+			<td>56%</td>
+			<td>38%</td>
+		</tr>
+		<tr>
+			<th scope="row">吾輩は猫である。名前はまだ無い。</th>
+			<td>56%</td>
+			<td>38%</td>
+		</tr>
+		</tbody>
+	</table><!-- /.c-table -->
+
+
+	<h3 class="c-heading-c u-mt-09">h3 吾輩は猫である。名前はまだ無い。</h3>
+
+	<p class="c-text u-mt-06">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+	<ul class="c-list u-mt-06">
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。
+			<ul>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+			</ul>
+		</li>
+	</ul><!-- /.c-list -->
+
+	<div class="c-media c-media__col1 u-mt-06">
+		<div class="c-media__item">
+			<figure class="c-figure">
+				<img src="https://placekitten.com/800/450" width="800" height="450" alt="画像の内容についての説明">
+				<figcaption>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</figcaption>
+			</figure><!-- /.c-figure -->
+		</div>
+	</div><!-- /.c-media -->
+
+	<h2 class="c-heading-b u-mt-10">h2 吾輩は猫である。名前はまだ無い。</h2>
+
+	<p class="c-text u-mt-06">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+	<p class="c-text u-mt-06">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+</div>
+</body>
+</html>

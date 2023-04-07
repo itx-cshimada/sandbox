@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>デフォルトマージンをつける | 要素間の空き検討 | Design System</title>
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<style>
+	.c-heading-a {
+		margin-top: 100px;
+	}
+	.c-heading-b {
+		margin-top: 60px;
+	}
+	.c-heading-c {
+		margin-top: 44px;
+	}
+	.c-heading-d {
+		margin-top: 32px;
+	}
+	.c-heading-a + .c-heading-b,
+	.c-heading-a + .c-heading-c,
+	.c-heading-b + .c-heading-c,
+	.c-heading-a + .c-heading-d,
+	.c-heading-b + .c-heading-d,
+	.c-heading-c + .c-heading-d	{
+		margin-top: 24px;
+	}
+
+	.c-text,
+	.c-list,
+	.c-media,
+	.c-table {
+		margin-top: 24px;
+	}
+</style>
+<div class="wrap">
+
+	<h1 class="c-heading-a">h1 吾輩は猫である。名前はまだ無い。</h1>
+
+	<h2 class="c-heading-b">h2 吾輩は猫である。名前はまだ無い。</h2>
+
+	<h3 class="c-heading-c">h3 吾輩は猫である。名前はまだ無い。</h3>
+
+	<h4 class="c-heading-d">h4 吾輩は猫である。名前はまだ無い。</h4>
+
+	<p class="c-text">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+	<ul class="c-list">
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。
+			<ul>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+			</ul>
+		</li>
+	</ul><!-- /.c-list -->
+
+	<div class="c-media c-media__col1">
+		<div class="c-media__item">
+			<figure class="c-figure">
+				<img src="https://placekitten.com/800/450" width="800" height="450" alt="画像の内容についての説明">
+				<figcaption>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</figcaption>
+			</figure><!-- /.c-figure -->
+		</div>
+	</div><!-- /.c-media -->
+
+	<h2 class="c-heading-b">h2 吾輩は猫である。名前はまだ無い。</h2>
+
+	<h3 class="c-heading-c">h3 吾輩は猫である。名前はまだ無い。</h3>
+
+	<p class="c-text">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+	<ul class="c-list">
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。
+			<ul>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+			</ul>
+		</li>
+	</ul><!-- /.c-list -->
+
+	<table class="c-table">
+		<colgroup>
+			<col class="c-table__cell-40">
+			<col class="c-table__cell-30">
+			<col class="c-table__cell-30">
+		</colgroup>
+		<thead>
+		<tr>
+			<th scope="col">吾輩は猫である。名前はまだ無い。</th>
+			<th scope="col">データ</th>
+			<th scope="col">データ</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<th scope="row">吾輩は猫である。名前はまだ無い。</th>
+			<td>56%</td>
+			<td>38%</td>
+		</tr>
+		<tr>
+			<th scope="row">吾輩は猫である。名前はまだ無い。</th>
+			<td>56%</td>
+			<td>38%</td>
+		</tr>
+		</tbody>
+	</table><!-- /.c-table -->
+
+
+	<h3 class="c-heading-c">h3 吾輩は猫である。名前はまだ無い。</h3>
+
+	<p class="c-text">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+	<ul class="c-list">
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+		<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。
+			<ul>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+				<li>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</li>
+			</ul>
+		</li>
+	</ul><!-- /.c-list -->
+
+	<div class="c-media c-media__col1">
+		<div class="c-media__item">
+			<figure class="c-figure">
+				<img src="https://placekitten.com/800/450" width="800" height="450" alt="画像の内容についての説明">
+				<figcaption>掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。</figcaption>
+			</figure><!-- /.c-figure -->
+		</div>
+	</div><!-- /.c-media -->
+
+	<h2 class="c-heading-b">h2 吾輩は猫である。名前はまだ無い。</h2>
+
+	<p class="c-text">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+	<p class="c-text">どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。</p>
+
+</div>
+</body>
+</html>
